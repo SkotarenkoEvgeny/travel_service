@@ -23,7 +23,6 @@ def render_departures_page(departure):
 @app.route('/tours/<int:id>/')
 def render_tour_page(id):
     tour = tours.get(id, None)
-    print(tour)
     if tour is None:
         # added the departures key in hope, that will be fix this bug in next course steps
         return render_template('bad_data.html', departures=departures)
