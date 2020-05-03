@@ -1,23 +1,36 @@
 {% extends "base.html" %}
 {% block content %}
-  <main class="container mt-3">
-    <h1 class="display-5 mt-4">Летим из Новосибирска</h1>
-    <p class="mb-4">Найдено 15 туров, от 26 000 до 84 600 и от 4 ночей до 15 ночей</p>
+<main class="container mt-3">
+    <h1 class="display-5 mt-4">{{departure}}</h1>
+    {% set min_price = (hotel_list|min(attribute="price")).price %}
+    {% set max_price = (hotel_list|max(attribute="price")).price %}
+    {% if hotel_list|length == 1 %}
+    {% set word_end = '' %}
+    {% elif hotel_list|length in [2, 3, 4] %}
+    {% set word_end = 'а' %}
+    {% else %}
+    {% set word_end = 'ов' %}
+    {% endif %}
+    <p class="mb-4">Найдено {{hotel_list|length}} тур{{word_end}}, от {{min_price//1000}} {% if min_price%1000 == 0 %}000{% else
+        %} {{min_price%1000}}{% endif %} до {{max_price//1000}} {% if max_price%1000 == 0 %}000{% else
+        %} {{max_price%1000}}{% endif %} и от {{(hotel_list|min(attribute="nights")).nights}} ночей до
+        {{(hotel_list|max(attribute="nights")).nights}}
+        ночей</p>
     <!-- CARDS -->
     <div class="row mt-5">
-      {% for hotel_id, hotel in tours_list.items() %}
-      <div class="col-4">
-        <div class="card mb-4">
-          <img src="https://place-hold.it/300x200" class="card-img-top img-fluid" alt="">
-          <div class="card-body">
-            <h2 class="h5 card-title">{{hotel.title}}</h2>
-            <p class="card-text">{{hotel.description}}</p>
-            <a href="/tours/{{hotel_id}}/" class="btn btn-sm btn-primary">Подробнее</a>
-          </div>
+        {% for hotel in hotel_list %}
+        <div class="col-4">
+            <div class="card mb-4">
+                <img src="{{hotel.picture}}" class="card-img-top img-fluid" alt="">
+                <div class="card-body">
+                    <h2 class="h5 card-title">{{hotel.title}}</h2>
+                    <p class="card-text">{{hotel.description|truncate(50)}}</p>
+                    <a href="/tours/{{hotel.id}}/" class="btn btn-sm btn-primary">Подробнее</a>
+                </div>
+            </div>
         </div>
-      </div>
-      {% endfor %}
+        {% endfor %}
     </div>
 
-  </main>
+</main>
 {% endblock %}

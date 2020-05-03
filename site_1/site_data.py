@@ -108,7 +108,7 @@ tours = {
         "description": "Снаружи этот дом выглядит старым, но чудесным. Он был построен из желтого соснового дерева и украшен белым кирпичом. Короткие, широкие окна пропускают много света и были добавлены в дом очень симметричным способом.",
         "departure": "msk",
         "picture": "https://images.unsplash.com/photo-1560200353-ce0a76b1d438?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-        "price": 52000,
+        "price": 52600,
         "stars": "4",
         "country": "Куба",
 		"nights":10,

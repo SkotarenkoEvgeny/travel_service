@@ -9,6 +9,7 @@
 </head>
 
 <body>
+<!-- Navbar -->
 <header class="container mt-3">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/">Stepik Travel</a>
@@ -18,15 +19,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                {% for departure in departures.values() %}
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">{{departure}}</a>
+                {% for link, departure in departures.items() %}
+                <li class="nav-item {% if request.path.split('/')[2] == link %}active{% endif %}">
+                    <a class="nav-link" href="/departures/{{link}}/">{{departure}}</a>
                 </li>
                 {% endfor %}
             </ul>
         </div>
     </nav>
 </header>
+<!--EndNavbar-->
 {% block content %}
 {% endblock %}
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
