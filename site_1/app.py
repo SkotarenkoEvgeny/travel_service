@@ -35,6 +35,7 @@ def render_tour_page(id):
         # added the departures key in hope, that will be fix this bug in next course steps
         return render_template('bad_data.html', departures=departures)
     else:
+        tour['stars'] = range(int(tour['stars']))
         # added the departures key in hope, that will be fix this bug in next course steps
         return render_template('tour.html', tour=tour, departures=departures)
 
