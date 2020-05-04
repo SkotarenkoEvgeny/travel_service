@@ -32,11 +32,9 @@ def render_departures_page(departure):
 def render_tour_page(id):
     tour = tours.get(id, None)
     if tour is None:
-        # added the departures key in hope, that will be fix this bug in next course steps
         return render_template('bad_data.html', departures=departures)
     else:
         tour['stars'] = range(int(tour['stars']))
-        # added the departures key in hope, that will be fix this bug in next course steps
         return render_template('tour.html', tour=tour, departures=departures)
 
 
@@ -44,4 +42,5 @@ def render_tour_page(id):
 def render_pay_page(price):
     return render_template('pay_management.html', price=price, departures=departures)
 
-app.run('0.0.0.0', 8000, debug=True)
+if __name__ == '__main__':
+    app.run()
